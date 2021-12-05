@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="./assets/css/font-awesome.css">
+	<link rel="stylesheet" href="./assets/css/style.css">
+	<script defer type="module" src="./assets/js/app.js"></script>
+	<title>TODO App</title>
+</head>
+<body>
+	
+
+	<div class="container my-5" id='app'>
+	
+		<h1>{{title}}</h1>
+		
+		<hr>
+		
+		<div class="row">
+			<div class="col-10">
+				<input v-model='newTask' id='new-task' type='text' class="form-control w-100" placeholder="What to do?">
+			</div>
+			<div class="col-2">
+				<button :disabled='!newTask.trim()' @click='addTask' class="btn btn-primary w-100" id='add-task-btn'>
+					<i class="fas fa-plus"></i>
+					ADD
+				</button>
+			</div>
+		</div>
+		
+		<hr>
+		
+		<div class="records" id='records-place'>
+			
+			<h4 v-for='item in tasks' class="my-3 p-2">
+
+				<span 
+					@click='item.complete = !item.complete' 
+					:class="{ 
+						'text-muted' : item.complete, 
+						'strike' : item.complete 
+					}"
+				>
+					
+					# {{item.title}}
+					
+				</span>
+					
+				<i @click='delTask(item)' class="far fa-trash-alt mx-2" title='Delete'></i>
+
+			</h4>
+
+		</div>
+
+	</div>
+
+
+</body>
+</html>
